@@ -9,15 +9,11 @@ public class Enemy : MonoBehaviour
     private bool isUp = true;
     [SerializeField] private float speed = 3f;
 
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         
+        //Move
         Vector3 newPos = new Vector3();
 
         int dir = (isUp? 1 : -1);
@@ -33,4 +29,5 @@ public class Enemy : MonoBehaviour
         else transform.position += newPos;
 
     }
+
 }
