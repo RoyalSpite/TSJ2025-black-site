@@ -13,9 +13,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool canShoot = true;
 
-    [SerializeField] private float countDown = 0;
+    [SerializeField] private float countDownWeapon = 0;
 
-    [SerializeField] private float carSpeed = 10f;
+    [SerializeField] private float carSpeed = 15f;
+
+    [SerializeField] private float countDownPowerUp = 0;
+
+    [SerializeField] private ItemType itemType = ItemType.None;
 
     public Vector3 target = Vector3.zero;
 
@@ -35,10 +39,11 @@ public class Player : MonoBehaviour
 
         // countdown
         if(!canShoot){
-            countDown += Time.deltaTime;
-            if(countDown >= timePerShot){
+            countDownWeapon += Time.deltaTime;
+            // if get weapon power up , decrease weapon cooldown from 0.75 to 0.5
+            if(countDownWeapon >= (timePerShot - (itemType == ItemType.Weapon? 0.25f : 0f))){
                 canShoot = true;
-                countDown = 0;
+                countDownWeapon = 0;
             }
         }
 
@@ -55,7 +60,15 @@ public class Player : MonoBehaviour
             }
 
         }
-        
+
+        // fuel
+        if(itemType == ItemType.Weapon){
+            countDownWeapon += Time.deltaTime;
+            if(countDownWeapon >= 2.5){
+                itemType = ItemType.None;
+                countDownWeapon = 0;
+            }
+        }
         
     }
 
@@ -68,5 +81,20 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collider){
+ 
+        if(collider.gameObject.CompareTag("Item")){
+            itemType =  collider.gameObject.GetComponent<Item>().type;
+            // collider.gameObject.GetComponent<Item>().GetPowerUp();
+
+            if(itemType == ItemType.Fuel){
+                health = Mathf.Min(30, health + 7);
+                itemType = ItemType.None;
+            }
+
+            Destroy(collider.gameObject);
+        }
     }
 }
