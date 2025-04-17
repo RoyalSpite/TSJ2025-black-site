@@ -3,17 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private int health = 30;
-    // [SerializeField] private float chargeTimePerShot = 1f;
-    [SerializeField] private float timePerShot = 0.75f;
-
-    // [SerializeField] private const int maxShot = 10;
-    [SerializeField] private float range = 5;
-    [SerializeField] private GameObject point;
-
-    [SerializeField] private bool canShoot = true;
-
-    [SerializeField] private float countDownWeapon = 0;
+    [SerializeField] public int health = 30;
 
     [SerializeField] private float carSpeed = 15f;
 
@@ -26,26 +16,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // fire
-        Vector3 mousePosScreen = Input.mousePosition;
-        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosScreen);
-        mousePosWorld.z = 0;
-
-        point.gameObject.transform.position = mousePosWorld;
-
-        // else if(Input.GetMouseButtonUp(0)){
-        //     point.SetActive(false);
-        // }
-
-        // countdown
-        if(!canShoot){
-            countDownWeapon += Time.deltaTime;
-            // if get weapon power up , decrease weapon cooldown from 0.75 to 0.5
-            if(countDownWeapon >= (timePerShot - (itemType == ItemType.Weapon? 0.25f : 0f))){
-                canShoot = true;
-                countDownWeapon = 0;
-            }
-        }
 
         // move
         if(target != Vector3.zero){
@@ -61,31 +31,7 @@ public class Player : MonoBehaviour
 
         }
 
-        // fuel
-        if(itemType == ItemType.Weapon){
-            countDownWeapon += Time.deltaTime;
-            if(countDownWeapon >= 2.5){
-                itemType = ItemType.None;
-                countDownWeapon = 0;
-            }
-        }
         
-    }
-
-    public void Fire(Enemy e){
-
-        if(canShoot){
-            if(Vector2.Distance(transform.position, point.transform.position) <= range){
-                Debug.Log("Fire");
-                canShoot = false;
-
-                // if(e.health <= 0){
-                //     Destroy(e.gameObject);
-                // }
-                
-            }
-        }
-
     }
 
     private void OnCollisionEnter2D(Collision2D collider){

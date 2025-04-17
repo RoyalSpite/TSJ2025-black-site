@@ -26,13 +26,12 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
+        if(collision.gameObject.CompareTag("Player")){
+            collision.gameObject.GetComponent<Player>().health -= 1;
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.CompareTag("Bullet"))
-        {
+        if(collision.gameObject.CompareTag("Bullet")){
             health -= 1; 
         }
     }

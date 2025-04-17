@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,6 +7,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Player player;
     [SerializeField] private Transform[] roadPosition;
+
+    [SerializeField] private TextMeshProUGUI ScoreText;
+    [SerializeField] private TextMeshProUGUI FuelText;
 
     [SerializeField] private int laneIndex = 0;
     [SerializeField] private int colIndex = 0;
@@ -19,8 +23,9 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
+
+        FuelText.SetText("HP : " + player.health);
         
         // player movement
         if(player.target == Vector3.zero){

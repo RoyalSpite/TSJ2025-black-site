@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     public GameObject bulletPrefab;
+
+    [SerializeField] GameObject[] bullets;
+    public int bulletIndex = 0;
+
     public Transform firePoint;   // จุดที่ยิงกระสุนออกไป
     public float fireRate = 0.2f;  // เวลาหน่วงระหว่างยิงแต่ละครั้ง
     private float fireTimer = 0f;
