@@ -72,12 +72,17 @@ public class Player : MonoBehaviour
         
     }
 
-    public void Fire(){
+    public void Fire(Enemy e){
 
         if(canShoot){
             if(Vector2.Distance(transform.position, point.transform.position) <= range){
                 Debug.Log("Fire");
                 canShoot = false;
+
+                // if(e.health <= 0){
+                //     Destroy(e.gameObject);
+                // }
+                
             }
         }
 
@@ -96,5 +101,6 @@ public class Player : MonoBehaviour
 
             Destroy(collider.gameObject);
         }
+
     }
 }
