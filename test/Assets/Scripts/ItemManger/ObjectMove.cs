@@ -10,8 +10,9 @@ public class ObjectMove : MonoBehaviour
     {
         transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
 
-        // ทำลายเมื่อพ้นจอ
-        if (transform.position.x < -10f)
-            Destroy(gameObject);
+    }
+
+    void OnBecameInvisible(){
+        Destroy(gameObject);
     }
 }

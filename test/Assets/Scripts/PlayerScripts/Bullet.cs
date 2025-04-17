@@ -19,23 +19,17 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
 
-        // // ถ้าอยู่นอกกล้องนานเกินก็ทำลายตัวเอง
-        // if (transform.position.magnitude > 50f)
-        // {
-        //     Destroy(gameObject);
-        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
+        if (other.CompareTag("Enemy")){
+            OnBecameInvisible();
         }
     }
 
     void OnBecameInvisible(){
-        print("out of screen");
-        Destroy(gameObject);
+        // print("out of screen");
+        gameObject.SetActive(false);
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public GameObject bulletPrefab;
 
     [SerializeField] GameObject[] bullets;
     public int bulletIndex = 0;
@@ -27,7 +26,8 @@ public class PlayerShooting : MonoBehaviour
     void Shoot()
     {
         // สร้างกระสุน
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        bullets[bulletIndex].SetActive(true);
+        bullets[bulletIndex].transform.position = firePoint.position;
 
         // หาทิศทางจาก firePoint ไปที่ตำแหน่งเมาส์
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -35,6 +35,9 @@ public class PlayerShooting : MonoBehaviour
         Vector3 direction = (mousePosition - firePoint.position).normalized;
 
         // ส่งทิศทางให้กระสุน
-        bullet.GetComponent<Bullet>().SetDirection(direction);
+        bullets[bulletIndex].GetComponent<Bullet>().SetDirection(direction);
+
+        bulletIndex = (bulletIndex + 1 == bullets.Length)? 0 : bulletIndex + 1;
+
     }
 }
