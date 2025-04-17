@@ -3,6 +3,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float moveSpeed = 3f;
+
+    [SerializeField] private int health = 3;
     private Transform player;
 
     void Start()
@@ -18,6 +20,8 @@ public class Enemy : MonoBehaviour
             Vector3 direction = (player.position - transform.position).normalized;
             transform.Translate(direction * moveSpeed * Time.deltaTime);
         }
+
+        if (health == 0) Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -25,6 +29,11 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
+        }
+
+        if(collision.gameObject.CompareTag("Bullet"))
+        {
+            health -= 1; 
         }
     }
 }

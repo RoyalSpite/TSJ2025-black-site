@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6021715328347046109}
   - component: {fileID: 668349493904009398}
   - component: {fileID: 93737427043474733}
+  - component: {fileID: 5633927165402157215}
   m_Layer: 0
-  m_Name: Item 2
+  m_Name: Item_Fuel
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,4 +172,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cde8fc12ad4744395bb6d249bf8c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 1
+--- !u!114 &5633927165402157215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2870699292244172829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d3c7b5a756eec4db75674040bd17b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
