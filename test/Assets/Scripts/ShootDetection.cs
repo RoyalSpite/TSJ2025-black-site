@@ -9,7 +9,7 @@ public class ShootDetection : MonoBehaviour
  
         if(collision.gameObject.CompareTag("Enemy")){
             // print("Shoot");
-            player.Fire();
+            player.Fire(collision.gameObject.GetComponent<Enemy>());
         }
     }
 }
