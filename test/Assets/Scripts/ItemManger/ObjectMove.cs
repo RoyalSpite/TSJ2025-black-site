@@ -6,8 +6,7 @@ public class ObjectMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
-    void Update()
-    {
+    void Update(){
         transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
 
     }
